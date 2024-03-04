@@ -82,5 +82,10 @@ namespace Shopping_Checkout
             }
             return totalPrice;
         }
+
+        public void RemoveDiscount(string sku)
+        {
+            _discountPrices.RemoveAll(d => d.SKU == sku);
+        }
     }
 }

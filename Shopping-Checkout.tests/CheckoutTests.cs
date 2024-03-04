@@ -138,7 +138,7 @@ namespace Shopping_Checkout.Tests
             checkout.SetItemPrices(itemPrices);
             checkout.SetDiscountPrices(discountPrices);
 
-            //checkout.RemoveDiscount("A");
+            checkout.RemoveDiscount("A");
 
             Assert.IsEmpty(checkout.GetDiscountPrices());
         }
