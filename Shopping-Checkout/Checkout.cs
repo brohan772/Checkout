@@ -62,10 +62,22 @@ namespace Shopping_Checkout
                 var quantity = item.Value;
 
                 var itemPrice = _itemPrices.FirstOrDefault(i => i.SKU == sku);
+                var discountPrice = _discountPrices.FirstOrDefault(s => s.SKU == sku);
 
                 if (itemPrice != null)
                 {
-                    totalPrice += itemPrice.UnitPrice * quantity;
+                    //if there is a discount, calculate how many items are eligible and add that to the total price
+                    //then using modulus add the price of the remaining items to the total.
+                    if (discountPrice != null && quantity >= discountPrice.Quantity)
+                    {
+                        totalPrice += (quantity / discountPrice.Quantity) * discountPrice.DiscountPrice +
+                                      (quantity % discountPrice.Quantity) * itemPrice.UnitPrice;
+                    }
+                    else
+                    {
+                        totalPrice += itemPrice.UnitPrice * quantity;
+                    }
+
                 }
             }
             return totalPrice;
