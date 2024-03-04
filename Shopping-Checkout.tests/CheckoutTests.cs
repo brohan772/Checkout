@@ -55,5 +55,32 @@ namespace Shopping_Checkout.Tests
             Assert.AreEqual(discountPrices, checkout.GetDiscountPrices());
         }
 
+        [Test]
+        public void ScanDiscountItemsTest()
+        {
+            var checkout = new Checkout();
+
+            var itemPrices = new List<ItemPrices>
+            {
+                new ItemPrices("A", 50),
+                new ItemPrices("B", 40)
+            };
+
+            var discountPrices = new List<DiscountPrices>
+            {
+                new DiscountPrices("A", 3, 130)
+            };
+
+            checkout.SetItemPrices(itemPrices);
+            checkout.SetDiscountPrices(discountPrices);
+
+            checkout.Scan("A");
+            checkout.Scan("B");
+            checkout.Scan("A");
+            checkout.Scan("A");
+
+            Assert.AreEqual(170, checkout.GetTotalPrice());
+
+        }
     }
 }
