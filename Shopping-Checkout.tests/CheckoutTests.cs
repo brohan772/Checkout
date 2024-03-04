@@ -98,5 +98,25 @@ namespace Shopping_Checkout.Tests
 
             Assert.AreEqual(0, checkout.GetTotalPrice());
         }
+
+        [Test]
+        public void ScanMissingItemsTest()
+        {
+            var checkout = new Checkout();
+
+            var itemPrices = new List<ItemPrices>
+            {
+                new ItemPrices("A", 50)
+            };
+
+            checkout.SetItemPrices(itemPrices);
+
+            checkout.Scan("A");
+            checkout.Scan("C");
+            checkout.Scan("a");
+
+            Assert.AreEqual(50, checkout.GetTotalPrice());
+
+        }
     }
 }
