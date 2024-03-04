@@ -118,5 +118,30 @@ namespace Shopping_Checkout.Tests
             Assert.AreEqual(50, checkout.GetTotalPrice());
 
         }
+
+        [Test]
+        public void RemoveDiscountTest()
+        {
+            var checkout = new Checkout();
+
+            var itemPrices = new List<ItemPrices>
+            {
+                new ItemPrices("A", 50),
+                new ItemPrices("B", 40)
+            };
+
+            var discountPrices = new List<DiscountPrices>
+            {
+                new DiscountPrices("A", 3, 130)
+            };
+
+            checkout.SetItemPrices(itemPrices);
+            checkout.SetDiscountPrices(discountPrices);
+
+            //checkout.RemoveDiscount("A");
+
+            Assert.IsEmpty(checkout.GetDiscountPrices());
+        }
+
     }
 }
