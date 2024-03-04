@@ -8,11 +8,13 @@ namespace Shopping_Checkout
     public class Checkout : ICheckout
     {
         private List<ItemPrices> _itemPrices;
+        private List<DiscountPrices> _discountPrices;
         private Dictionary<string, int> _scannedItems;
 
         public Checkout()
         {
             _itemPrices = new List<ItemPrices>();
+            _discountPrices = new List<DiscountPrices>();
             _scannedItems = new Dictionary<string, int>();
         }
 
@@ -24,6 +26,16 @@ namespace Shopping_Checkout
         public List<ItemPrices> GetItemPrices()
         {
             return _itemPrices;
+        }
+
+        public void SetDiscountPrices(List<DiscountPrices> discountPrices)
+        {
+            _discountPrices = discountPrices;
+        }
+
+        public List<DiscountPrices> GetDiscountPrices()
+        {
+            return _discountPrices;
         }
 
 
