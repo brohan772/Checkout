@@ -40,5 +40,19 @@ namespace Shopping_Checkout.Tests
             Assert.AreEqual(90, checkout.GetTotalPrice());
         }
 
+        public void SetDiscountPricesTest()
+        {
+            var checkout = new Checkout();
+
+            var discountPrices = new List<DiscountPrices>
+            {
+                new DiscountPrices("A", 3, 140)
+            };
+
+            checkout.SetDiscountPrices(discountPrices);
+
+            Assert.AreEqual(discountPrices, checkout.GetDiscountPrices());
+        }
+
     }
 }
